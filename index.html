@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitHub User Data</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem;
+      }
+      #img {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="img">img</div>
+    <div id="user-info"><h1>Information</h1></div>
+    <script>
+      const username = prompt("Enter Your GitHub User name ");
+      const apiUrl = `https://api.github.com/users/${username}`;
+
+      const fetchAndDisplayData = () => {
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+
+            const userImg = document.getElementById("img");
+            userImg.innerHTML = `<img src="${data.avatar_url}" alt="User Image ">`;
+
+            const userInfo = document.getElementById("user-info");
+
+            for (const key in data) {
+              if (data[key] !== null) {
+                userInfo.innerHTML += `<ul><strong>${key}:</strong> ${data[key]}</ul>`;
+              }
+            }
+          });
+      };
+
+      window.onload = fetchAndDisplayData;
+    </script>
+  </body>
+</html>
