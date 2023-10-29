@@ -17,7 +17,9 @@
     <div id="img">img</div>
     <div id="user-info"><h1>Information</h1></div>
     <script>
-      const username = prompt("Enter Your GitHub User name ");
+      const username = prompt(
+        "Enter Your GitHub User name  Ex. { ' nitishsingh925 '} "
+      );
       const apiUrl = `https://api.github.com/users/${username}`;
 
       const fetchAndDisplayData = () => {
